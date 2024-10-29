@@ -8,7 +8,7 @@ export interface Client extends AuditableEntity {
   address?: string;
   phone?: string;
   email?: string;
-  cars: Car[] ;
+  cars: Car[];
 
 
 }

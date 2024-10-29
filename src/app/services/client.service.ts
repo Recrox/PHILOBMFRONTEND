@@ -8,6 +8,6 @@ import { Client } from '../models/Client';
 })
 export class ClientService extends BaseService<Client> {
   constructor(http: HttpClient) {
-    super(http, 'clients'); // Spécifiez le chemin relatif pour les clients
+    super(http, 'client'); // Spécifiez le chemin relatif pour les clients
   }
 }

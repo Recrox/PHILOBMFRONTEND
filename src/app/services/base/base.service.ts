@@ -11,7 +11,8 @@ import { API_ENDPOINT } from '../../outils/endpoint.token';
 export class BaseService<T extends BaseEntity> {
   protected baseUrl: string = environment.apiUrl; // Utilisez l'URL de l'API à partir de l'environnement
 
-  constructor(protected http: HttpClient, @Inject(API_ENDPOINT) private endpoint: string) {}
+  constructor(private http: HttpClient, @Inject(API_ENDPOINT) public endpoint: string) {
+  }
 
   getAll(): Observable<T[]> {
     return this.http.get<T[]>(`${this.baseUrl}/${this.endpoint}`);

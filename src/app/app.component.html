@@ -1,10 +1,19 @@
-<nav>
-  <ul>
-    <li><a routerLink="/">Accueil</a></li>
-    <li><a routerLink="/client">Client</a></li>
-    <li><a routerLink="/car">Voiture</a></li>
-    <li><a routerLink="/invoice">Facturation</a></li>
-  </ul>
-</nav>
+<mat-toolbar color="primary" class="menu-toolbar">
+  <span class="logo">MyApp</span>
+  <nav class="menu-nav">
+    <a mat-button routerLink="/" routerLinkActive="active" aria-label="Accueil">
+      <mat-icon>home</mat-icon> Accueil
+    </a>
+    <a mat-button routerLink="/client" routerLinkActive="active" aria-label="Client">
+      <mat-icon>person</mat-icon> Client
+    </a>
+    <a mat-button routerLink="/car" routerLinkActive="active" aria-label="Voiture">
+      <mat-icon>directions_car</mat-icon> Voiture
+    </a>
+    <a mat-button routerLink="/invoice" routerLinkActive="active" aria-label="Facturation">
+      <mat-icon>receipt</mat-icon> Facturation
+    </a>
+  </nav>
+</mat-toolbar>
 
 <router-outlet></router-outlet>

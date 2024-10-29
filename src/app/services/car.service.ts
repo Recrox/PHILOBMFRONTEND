@@ -8,7 +8,7 @@ import { Car } from '../models/Car';
 })
 export class CarService extends BaseService<Car> {
   constructor(http: HttpClient) {
-    super(http, 'cars'); // Spécifiez le chemin relatif pour les voitures
+    super(http, 'car'); // Spécifiez le chemin relatif pour les voitures
   }
 }
 

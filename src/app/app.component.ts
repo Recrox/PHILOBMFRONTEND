@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { environment } from '../environments/environment';
 import { API_ENDPOINT } from './outils/endpoint.token';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +13,11 @@ import { API_ENDPOINT } from './outils/endpoint.token';
   imports: [
     RouterOutlet,
     RouterLink,
-    RouterModule
+    RouterModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
