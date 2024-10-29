@@ -9,11 +9,11 @@ import { API_ENDPOINT } from '../environments/endpoint.token';
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [
-    { provide: API_ENDPOINT, useValue: environment.apiUrl } // Mettez ici l'URL de votre API
-  ],
+  // providers: [
+  //   { provide: API_ENDPOINT, useValue: environment.apiUrl } // Mettez ici l'URL de votre API
+  // ],
   
 })
 export class AppComponent {
-  title = 'PHILOBMFront';
+  title = 'PHILOBM';
 }
