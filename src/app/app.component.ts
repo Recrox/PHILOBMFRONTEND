@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { environment } from '../environments/environment';
-import { API_ENDPOINT } from '../environments/endpoint.token';
+import { API_ENDPOINT } from './outils/endpoint.token';
 
 @Component({
   selector: 'app-root',

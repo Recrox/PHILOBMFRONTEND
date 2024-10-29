@@ -14,18 +14,18 @@ export class ClientComponent implements OnInit {
   constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
-    // this.loadClients(); // Chargez les clients lors de l'initialisation du composant
+    this.loadClients(); // Chargez les clients lors de l'initialisation du composant
   }
 
-  // loadClients(): void {
-  //   this.clientService.getAll().subscribe({
-  //     next: (data: Client[]) => {
-  //       this.clients = data; // Assignez la liste des clients récupérés
-  //     },
-  //     error: (error) => {
-  //       console.error('Erreur lors du chargement des clients:', error);
-  //     }
-  //   });
-  // }
+  loadClients(): void {
+    this.clientService.getAll().subscribe({
+      next: (data: Client[]) => {
+        this.clients = data; // Assignez la liste des clients récupérés
+      },
+      error: (error) => {
+        console.error('Erreur lors du chargement des clients:', error);
+      }
+    });
+  }
   
 }

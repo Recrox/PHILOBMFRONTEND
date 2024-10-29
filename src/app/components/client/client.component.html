@@ -1,5 +1,5 @@
 <h1>Liste des Clients</h1>
-<!-- <table>
+<table>
   <thead>
     <tr>
       <th>ID</th>
@@ -10,12 +10,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let client of clients">
-      <td>{{ client.id }}</td>
-      <td>{{ client.lastName }}</td>
-      <td>{{ client.firstName }}</td>
-      <td>{{ client.email }}</td>
-      <td>{{ client.phone }}</td>
+    <tr >
+      @for (client of clients; track client.id) {
+        <td>{{ client.id }}</td>
+        <td>{{ client.lastName }}</td>
+        <td>{{ client.firstName }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.phone }}</td>
+      }
     </tr>
   </tbody>
-</table> -->
+</table>

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment'; // Importez l'environnement
 import { BaseEntity } from '../../models/BaseEntity';
-import { API_ENDPOINT } from '../../../environments/endpoint.token';
+import { API_ENDPOINT } from '../../outils/endpoint.token';
 
 @Injectable({
   providedIn: 'root'
