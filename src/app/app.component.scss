@@ -37,4 +37,23 @@
       }
     }
   }
+
+  body {
+    
+    color: #333; /* Couleur du texte */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .main-container {
+    background: linear-gradient(135deg, #9cb3d9, #4a90e2); /* Dégradé de bleu doux et riche */
+    min-height: 100vh;
+    padding: 16px;
+    box-sizing: border-box;
+    color: #333; /* Couleur de texte sombre pour un bon contraste */
+  }
+  
+  
+  
   

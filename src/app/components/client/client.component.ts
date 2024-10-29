@@ -23,7 +23,7 @@ import { ClientDetailsComponent } from '../../client-details/client-details.comp
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatDividerModule 
+    MatDividerModule,
   ],
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
