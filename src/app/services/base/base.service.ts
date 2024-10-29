@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment'; // Importez l'environnement
-import { BaseEntity } from '../models/BaseEntity';
+import { environment } from '../../../environments/environment'; // Importez l'environnement
+import { BaseEntity } from '../../models/BaseEntity';
+import { API_ENDPOINT } from '../../../environments/endpoint.token';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { BaseEntity } from '../models/BaseEntity';
 export class BaseService<T extends BaseEntity> {
   protected baseUrl: string = environment.apiUrl; // Utilisez l'URL de l'API à partir de l'environnement
 
-  constructor(protected http: HttpClient, private endpoint: string) {}
+  constructor(protected http: HttpClient, @Inject(API_ENDPOINT) private endpoint: string) {}
 
   getAll(): Observable<T[]> {
     return this.http.get<T[]>(`${this.baseUrl}/${this.endpoint}`);
