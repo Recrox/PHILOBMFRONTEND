@@ -1,0 +1,53 @@
+.not-found-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .not-found-icon {
+    font-size: 4rem;
+    color: #1976d2; /* Couleur douce pour l'icône */
+    margin-bottom: 10px;
+  }
+  
+  .not-found-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .not-found-description {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .return-home-button {
+    font-size: 1rem;
+    text-transform: uppercase;
+    padding: 12px 24px; /* Ajoute du padding pour un meilleur espacement */
+    border-radius: 5px; /* Arrondit les bords du bouton */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Ajoute une transition pour les effets de survol */
+  }
+  
+  /* Effet au survol */
+  .return-home-button:hover {
+    background-color: #1976d2; /* Couleur de fond au survol */
+    // color: white; /* Couleur du texte au survol */
+  }
+  
+  /* Utilisation d'un style global pour les boutons */
+  button[color="primary"] {
+    // color: white; /* Changer la couleur du texte en blanc */
+    background-color: #1976d2;
+  }
+  
+  button[color="primary"]:hover {
+    background-color: #1565c0; /* Couleur de fond plus foncée au survol */
+  }
+  
