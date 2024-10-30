@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Client } from '../../models/Client';
-import { ClientService } from '../../services/client.service';
+import { Client } from '../../../models/Client';
+import { ClientService } from '../../../services/client.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -10,7 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { ClientDetailsComponent } from '../../client-details/client-details.component';
+import { ClientDetailsComponent } from '../client-details/client-details.component';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { NotificationService } from '../../../notification.service';
 
 @Component({
   selector: 'app-client',
@@ -24,19 +28,28 @@ import { ClientDetailsComponent } from '../../client-details/client-details.comp
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatLabel,
+    MatFormField,
+    FormsModule,
+    MatInputModule
   ],
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
 })
 export class ClientComponent implements OnInit  {
   displayedColumns: string[] = ['id', 'lastName', 'firstName', 'email', 'phone', 'actions'];
-
   clients = new MatTableDataSource<Client>([]);
+  filteredClients: Client[] = [];
+  searchTerm: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private clientService: ClientService, private dialog: MatDialog) {}
+  constructor(
+    private clientService: ClientService,
+    private dialog: MatDialog,
+    private notificationService: NotificationService
+    ) {}
 
   ngOnInit(): void {
     this.loadClients();
@@ -48,10 +61,25 @@ export class ClientComponent implements OnInit  {
         this.clients.data = data;
         this.clients.paginator = this.paginator;
         this.clients.sort = this.sort;
+
+        this.filteredClients = this.clients.data; 
       },
       error: (error) => {
         console.error('Erreur lors du chargement des clients:', error);
       },
+    });
+  }
+
+  applyFilter(): void {
+    const filterValue = this.searchTerm.trim().toLowerCase();
+    
+    this.filteredClients = this.clients.data.filter((client: Client) => {
+      const firstNameMatch = client.firstName?.toLowerCase().includes(filterValue);
+      const lastNameMatch = client.lastName?.toLowerCase().includes(filterValue);
+      const phoneMatch = client.phone?.includes(filterValue);
+      const emailMatch = client.email?.toLowerCase().includes(filterValue);
+      
+      return firstNameMatch || lastNameMatch || phoneMatch || emailMatch;
     });
   }
 
