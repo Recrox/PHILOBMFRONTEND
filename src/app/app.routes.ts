@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { ClientComponent } from './components/Clients/client-list/client.component';
-import { CarComponent } from './components/car/car.component';
-import { InvoiceComponent } from './components/invoice/invoice.component';
+import { InvoiceComponent } from './components/invoices/invoice/invoice.component';
+import { ClientComponent } from './components/clients/client-list/client.component';
+import { CarsListComponent } from './components/cars/cars-list/cars-list.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'client', component: ClientComponent },
-  { path: 'car', component: CarComponent },
+  { path: 'car', component: CarsListComponent },
   { path: 'invoice', component: InvoiceComponent },
 ];
 

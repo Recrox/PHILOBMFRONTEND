@@ -28,4 +28,5 @@ import { MatListModule } from '@angular/material/list';
 })
 export class AppComponent {
   title = 'PHILOBMFront';
+  currentYear: number = new Date().getFullYear();
 }

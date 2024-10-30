@@ -3,7 +3,7 @@
 </h1>
 
 <mat-card class="client-card">
-  <button mat-raised-button color="primary" (click)="openClientDetails()">Ajouter Client</button>
+  <button mat-raised-button color="primary" (click)="addClient()">Ajouter Client</button>
   
   <!-- Barre de recherche -->
   <mat-form-field>
@@ -11,7 +11,7 @@
     <input matInput [(ngModel)]="searchTerm" (ngModelChange)="applyFilter()" placeholder="Tapez pour rechercher...">
   </mat-form-field>
 
-  <table mat-table [dataSource]="filteredClients" matSort class="mat-elevation-z8">
+  <table mat-table [dataSource]="clients " matSort class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
       <td mat-cell *matCellDef="let client"> {{client.id}} </td>

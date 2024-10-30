@@ -10,11 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { ClientDetailsComponent } from '../client-details/client-details.component';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NotificationService } from '../../../notification.service';
+import { ClientDetailsComponent } from '../client-details/client-details.component';
 
 @Component({
   selector: 'app-client',
@@ -36,10 +36,9 @@ import { NotificationService } from '../../../notification.service';
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
 })
-export class ClientComponent implements OnInit  {
+export class ClientComponent implements OnInit {
   displayedColumns: string[] = ['id', 'lastName', 'firstName', 'email', 'phone', 'actions'];
-  clients = new MatTableDataSource<Client>([]);
-  filteredClients: Client[] = [];
+  clients = new MatTableDataSource<Client>([]); // Utilisez directement MatTableDataSource pour les fonctionnalités de tri et pagination
   searchTerm: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -49,20 +48,21 @@ export class ClientComponent implements OnInit  {
     private clientService: ClientService,
     private dialog: MatDialog,
     private notificationService: NotificationService
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.loadClients();
   }
 
+  ngAfterViewInit() {
+    this.clients.paginator = this.paginator; // Associez paginator et sort directement à clients
+    this.clients.sort = this.sort;
+  }
+
   loadClients(): void {
     this.clientService.getAll().subscribe({
       next: (data: Client[]) => {
-        this.clients.data = data;
-        this.clients.paginator = this.paginator;
-        this.clients.sort = this.sort;
-
-        this.filteredClients = this.clients.data; 
+        this.clients.data = data; // Chargez les données directement dans MatTableDataSource
       },
       error: (error) => {
         console.error('Erreur lors du chargement des clients:', error);
@@ -72,15 +72,11 @@ export class ClientComponent implements OnInit  {
 
   applyFilter(): void {
     const filterValue = this.searchTerm.trim().toLowerCase();
-    
-    this.filteredClients = this.clients.data.filter((client: Client) => {
-      const firstNameMatch = client.firstName?.toLowerCase().includes(filterValue);
-      const lastNameMatch = client.lastName?.toLowerCase().includes(filterValue);
-      const phoneMatch = client.phone?.includes(filterValue);
-      const emailMatch = client.email?.toLowerCase().includes(filterValue);
-      
-      return firstNameMatch || lastNameMatch || phoneMatch || emailMatch;
-    });
+    this.clients.filter = filterValue; // Appliquez le filtre directement sur MatTableDataSource
+  }
+
+  addClient(){
+    this.openClientDetails();
   }
 
   editClient(client: Client): void {
@@ -89,12 +85,10 @@ export class ClientComponent implements OnInit  {
 
   deleteClient(client: Client): void {
     const confirmation = confirm(`Êtes-vous sûr de vouloir supprimer le client ${client.firstName} ${client.lastName} ?`);
-    
     if (confirmation) {
       this.clientService.delete(client.id).subscribe({
         next: () => {
           console.log('Client supprimé avec succès:', client);
-          // Optionnel: Rechargez les clients pour mettre à jour la liste
           this.loadClients();
         },
         error: (error) => {
@@ -104,7 +98,6 @@ export class ClientComponent implements OnInit  {
     }
   }
 
-  // Méthode pour ouvrir le dialog
   openClientDetails(client?: Client): void {
     const dialogRef = this.dialog.open(ClientDetailsComponent, {
       data: client ? { ...client } : null,
@@ -112,7 +105,7 @@ export class ClientComponent implements OnInit  {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loadClients(); // Rechargez les clients après ajout/mise à jour
+        this.loadClients(); // Recharge les clients après ajout ou mise à jour
       }
     });
   }

@@ -1,0 +1,55 @@
+.car-list-title {
+    display: flex;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #3f51b5;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+  }
+  
+  .car-list-title span {
+    margin-right: 10px;
+    font-size: 2.2rem;
+  }
+  
+  .car-card {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  button.mat-raised-button {
+    align-self: flex-start;
+    margin-bottom: 10px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 10px;
+  }
+  
+  mat-icon {
+    font-size: 20px;
+  }
+  
+  button[color="primary"] {
+    color: #1976d2;
+  }
+  
+  button[color="warn"] {
+    color: #d32f2f;
+  }
+  
