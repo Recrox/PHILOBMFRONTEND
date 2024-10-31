@@ -1,0 +1,32 @@
+<h2 mat-dialog-title class="dialog-title">{{ car.id ? 'Modifier' : 'Ajouter' }} une Voiture</h2>
+<mat-dialog-content class="dialog-content">
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Marque</mat-label>
+    <input matInput [(ngModel)]="car.brand" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Modèle</mat-label>
+    <input matInput [(ngModel)]="car.model" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Numéro de Plaque</mat-label>
+    <input matInput [(ngModel)]="car.licensePlate" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Numéro de Châssis</mat-label>
+    <input matInput [(ngModel)]="car.chassisNumber" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Kilométrage</mat-label>
+    <input matInput type="number" [(ngModel)]="car.mileage">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Annuler</button>
+  <button mat-button color="primary" (click)="saveCar()">Enregistrer</button>
+</mat-dialog-actions>

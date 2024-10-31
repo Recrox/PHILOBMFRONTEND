@@ -14,6 +14,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NotificationService } from '../../../notification.service';
+import { CarDetailsComponent } from '../car-details/car-details.component';
 
 @Component({
   selector: 'app-cars-list',
@@ -75,10 +76,10 @@ export class CarsListComponent implements OnInit {
   }
 
   addCar(){
-    // this.openCarDetails();
+    this.openCarDetails();
   }
   editCar(car: Car): void {
-    // this.openCarDetails(car);
+    this.openCarDetails(car);
   }
 
   deleteCar(car: Car): void {
@@ -96,15 +97,15 @@ export class CarsListComponent implements OnInit {
     }
   }
 
-  // openCarDetails(car?: Car): void {
-  //   const dialogRef = this.dialog.open(CarDetailsComponent, {
-  //     data: car ? { ...car } : null,
-  //   });
+  openCarDetails(car?: Car): void {
+    const dialogRef = this.dialog.open(CarDetailsComponent, {
+      data: car ? { ...car } : null,
+    });
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this.loadCars();
-  //     }
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadCars();
+      }
+    });
+  }
 }
