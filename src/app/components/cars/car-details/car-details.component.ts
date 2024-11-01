@@ -11,6 +11,7 @@ import { MatOption } from '@angular/material/core';
 import { ClientService } from '../../../services/client.service';
 import { Client } from '../../../models/Client';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-car-details',
@@ -23,7 +24,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     MatOption,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
   templateUrl: './car-details.component.html',
   styleUrls: ['./car-details.component.scss']
@@ -126,7 +128,13 @@ export class CarDetailsComponent implements OnInit {
     return client ? `${client.firstName} ${client.lastName}` : '';
   }
 
-  
+  clearClientSelection(event: Event): void {
+    event.stopPropagation(); // Empêche l'ouverture du mat-select
+    this.carForm.get('clientId')?.setValue(null); // Réinitialiser le champ `clientId` à null
+    this.searchControl.setValue(''); // Effacer le champ de recherche
+    this.filteredClients = this.clients; // Réinitialiser la liste des clients
+  }
+
   openSelect(): void {
     this.searchControl.setValue('');
     this.filterClients();

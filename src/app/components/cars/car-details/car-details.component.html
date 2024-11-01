@@ -28,6 +28,13 @@
         }
       </mat-select>
       
+      @if (carForm.get('clientId')?.value) {
+        <!-- Icône de réinitialisation pour annuler la sélection -->
+        <button mat-icon-button  matSuffix (click)="clearClientSelection($event)">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+
       @if (carForm.get('clientId')?.hasError('required')) {
         <mat-error>Le propriétaire est requis.</mat-error>
       }
