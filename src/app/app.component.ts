@@ -17,7 +17,7 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
