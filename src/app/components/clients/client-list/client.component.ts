@@ -36,7 +36,7 @@ import { ClientDetailsComponent } from '../client-details/client-details.compone
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss'],
 })
-export class ClientComponent implements OnInit {
+export class ClientListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'lastName', 'firstName', 'email', 'phone', 'actions'];
   clients = new MatTableDataSource<Client>([]); // Utilisez directement MatTableDataSource pour les fonctionnalités de tri et pagination
   searchTerm: string = '';
