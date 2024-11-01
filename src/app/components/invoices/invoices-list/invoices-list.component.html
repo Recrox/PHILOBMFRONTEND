@@ -9,8 +9,14 @@
       <mat-label>Rechercher une facture...</mat-label>
       <input matInput [(ngModel)]="searchTerm" (ngModelChange)="applyFilter()" placeholder="Tapez pour rechercher...">
     </mat-form-field>
-  
+
     <table mat-table [dataSource]="invoices" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let car"> {{car.id}} </td>
+      </ng-container>
+
       <ng-container matColumnDef="client">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Client </th>
         <td mat-cell *matCellDef="let invoice"> {{invoice.client?.firstName}} {{invoice.client?.lastName}} </td>

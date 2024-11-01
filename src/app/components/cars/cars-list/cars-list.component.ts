@@ -37,7 +37,7 @@ import { CarDetailsComponent } from '../car-details/car-details.component';
   styleUrls: ['./cars-list.component.scss']
 })
 export class CarsListComponent implements OnInit {
-  displayedColumns: string[] = ['brand', 'model', 'licensePlate', 'chassisNumber', 'mileage', 'client', 'actions'];
+  displayedColumns: string[] = ['id','brand', 'model', 'licensePlate', 'chassisNumber', 'mileage', 'client', 'actions'];
   cars = new MatTableDataSource<Car>([]);
   searchTerm: string = '';
 

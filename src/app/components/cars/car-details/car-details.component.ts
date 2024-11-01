@@ -12,6 +12,7 @@ import { ClientService } from '../../../services/client.service';
 import { Client } from '../../../models/Client';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { OwnerSelectComponent } from '../../shared/owner-select/owner-select.component';
 
 @Component({
   selector: 'app-car-details',
@@ -25,25 +26,21 @@ import { MatIconModule } from '@angular/material/icon';
     MatOption,
     ReactiveFormsModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    OwnerSelectComponent
   ],
   templateUrl: './car-details.component.html',
   styleUrls: ['./car-details.component.scss']
 })
 export class CarDetailsComponent implements OnInit {
-  @ViewChild('searchInput') searchInput!: ElementRef; // Référence au champ de recherche
   carForm: FormGroup; // Déclarez un FormGroup
   car: Car = {id: 0, brand: '', model: '', licensePlate: '', chassisNumber: '', mileage: 0, services: [] };
   clients: Client[] = [];
-  filteredClients: Client[] = []; // Liste des clients filtrés
-  searchTerm: string = ''; // Terme de recherche
-  searchControl = new FormControl(); // Déclarez le FormControl pour la recherche
 
   constructor(
     public dialogRef: MatDialogRef<CarDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Car | null,
     private carService: CarService,
-    private clientService: ClientService, 
     private notificationService: NotificationService,
     private fb: FormBuilder
   ) {
@@ -61,20 +58,6 @@ export class CarDetailsComponent implements OnInit {
     if (this.data) {
       this.carForm.patchValue(this.data); // Remplissez le formulaire si des données sont fournies
     }
-    this.loadClients(); // Chargez les clients
-    this.searchControl.valueChanges.subscribe(() => this.filterClients()); // Écoutez les changements de valeur
-  }
-
-  loadClients(): void {
-    this.clientService.getAll().subscribe({
-      next: (data: Client[]) => {
-        this.clients = data; // Mettez à jour la liste des clients
-        this.filteredClients = this.clients; // Initialiser les clients filtrés
-      },
-      error: (error) => {
-        console.error('Erreur lors du chargement des propriétaires:', error);
-      },
-    });
   }
 
   saveCar(): void {
@@ -108,38 +91,9 @@ export class CarDetailsComponent implements OnInit {
     }
   }
 
-  filterClients(): void {
-    const search = this.searchControl.value?.toLowerCase() || '';
-    this.filteredClients = search
-      ? this.clients.filter(client =>
-          client.firstName?.toLowerCase().includes(search) ||
-          client.lastName?.toLowerCase().includes(search)
-        )
-      : this.clients;
+  onClientCleared(): void {
+    // Actions à entreprendre lorsque le client est supprimé, si nécessaire
   }
-
-  onClientSelected(): void {
-    this.searchControl.setValue(''); // Effacez le champ de recherche
-    this.filteredClients = this.clients; // Réinitialisez la liste des clients filtrés
-  }
-
-  getClientFullName(clientId: number | null): string {
-    const client = this.clients.find(c => c.id === clientId);
-    return client ? `${client.firstName} ${client.lastName}` : '';
-  }
-
-  clearClientSelection(event: Event): void {
-    event.stopPropagation(); // Empêche l'ouverture du mat-select
-    this.carForm.get('clientId')?.setValue(null); // Réinitialiser le champ `clientId` à null
-    this.searchControl.setValue(''); // Effacer le champ de recherche
-    this.filteredClients = this.clients; // Réinitialiser la liste des clients
-  }
-
-  openSelect(): void {
-    this.searchControl.setValue('');
-    this.filterClients();
-    this.searchInput.nativeElement.focus();
-}
 
   cancel(): void {
     this.dialogRef.close();

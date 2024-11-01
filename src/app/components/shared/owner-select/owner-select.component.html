@@ -1,0 +1,41 @@
+<div [formGroup]="carForm" class="">
+
+    <mat-form-field appearance="fill" class="form-field full-width">
+        <mat-label>Propriétaire</mat-label>
+        
+        <mat-select formControlName="clientId" (openedChange)="openSelect()" >
+        <mat-select-trigger>
+            {{ getClientFullName(carForm.get('clientId')?.value) }}
+        </mat-select-trigger>
+        
+        <mat-form-field class="full-width">
+            <mat-label>Rechercher un client...</mat-label>
+            <input
+            #searchInput
+            matInput
+            placeholder="Rechercher..."
+            [formControl]="searchControl"
+            (ngModelChange)="filterClients()"
+            />
+        </mat-form-field>
+            
+        @for (client of filteredClients; track client.id) {
+            <mat-option [value]="client.id" (onSelectionChange)="onClientSelected()">
+            {{ client.firstName }} {{ client.lastName }}
+            </mat-option>
+        }
+        </mat-select>
+        
+        @if (carForm.get('clientId')?.value) {
+        <!-- Icône de réinitialisation pour annuler la sélection -->
+        <button mat-icon-button  matSuffix (click)="clearClientSelection($event)">
+            <mat-icon>close</mat-icon>
+        </button>
+        }
+
+        @if (carForm.get('clientId')?.hasError('required')) {
+        <mat-error>Le propriétaire est requis.</mat-error>
+        }
+    </mat-form-field>
+
+</div>

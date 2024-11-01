@@ -32,7 +32,7 @@ import { InvoiceService } from '../../../services/invoice.service';
   styleUrls: ['./invoices-list.component.scss']
 })
 export class InvoicesListComponent implements OnInit {
-  displayedColumns: string[] = ['client', 'car', 'date', 'services', 'actions'];
+  displayedColumns: string[] = ['id','client', 'car', 'date', 'services', 'actions'];
   invoices = new MatTableDataSource<Invoice>([]);
   searchTerm: string = '';
 
