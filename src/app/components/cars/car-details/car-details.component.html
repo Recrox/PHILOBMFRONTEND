@@ -10,7 +10,7 @@
           {{ getClientFullName(carForm.get('clientId')?.value) }}
         </mat-select-trigger>
         
-        <mat-form-field>
+        <mat-form-field class="full-width">
           <mat-label>Rechercher un client...</mat-label>
           <input
             #searchInput
@@ -22,7 +22,7 @@
         </mat-form-field>
           
         @for (client of filteredClients; track client.id) {
-          <mat-option [value]="client.id">
+          <mat-option [value]="client.id" (onSelectionChange)="onClientSelected()">
             {{ client.firstName }} {{ client.lastName }}
           </mat-option>
         }

@@ -60,7 +60,7 @@ export class CarsListComponent implements OnInit {
   }
 
   loadCars(): void {
-    this.carService.getAll().subscribe({
+    this.carService.getAllCarsWithClient().subscribe({
       next: (data: Car[]) => {
         this.cars.data = data;
       },

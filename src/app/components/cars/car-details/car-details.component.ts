@@ -107,11 +107,18 @@ export class CarDetailsComponent implements OnInit {
   }
 
   filterClients(): void {
-    const search = this.searchTerm.toLowerCase();
-    this.filteredClients = this.clients.filter(client => 
-      client.firstName?.toLowerCase().includes(search) || 
-      client.lastName?.toLowerCase().includes(search)
-    );
+    const search = this.searchControl.value?.toLowerCase() || '';
+    this.filteredClients = search
+      ? this.clients.filter(client =>
+          client.firstName?.toLowerCase().includes(search) ||
+          client.lastName?.toLowerCase().includes(search)
+        )
+      : this.clients;
+  }
+
+  onClientSelected(): void {
+    this.searchControl.setValue(''); // Effacez le champ de recherche
+    this.filteredClients = this.clients; // Réinitialisez la liste des clients filtrés
   }
 
   getClientFullName(clientId: number | null): string {
@@ -121,10 +128,10 @@ export class CarDetailsComponent implements OnInit {
 
   
   openSelect(): void {
-    this.searchControl.setValue(''); // Réinitialiser le champ de recherche
-    this.filterClients(); // Filtrer les clients
-    setTimeout(() => this.searchInput.nativeElement.focus(), 0); // Donner le focus au champ de recherche
-  }
+    this.searchControl.setValue('');
+    this.filterClients();
+    this.searchInput.nativeElement.focus();
+}
 
   cancel(): void {
     this.dialogRef.close();
