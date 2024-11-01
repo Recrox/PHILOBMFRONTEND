@@ -48,7 +48,11 @@ export class CarsListComponent implements OnInit {
     private carService: CarService,
     private dialog: MatDialog,
     private notificationService: NotificationService
-  ) {}
+  ) {
+    this.configureSearchFilter();
+  }
+
+  
 
   ngOnInit(): void {
     this.loadCars();
@@ -106,5 +110,25 @@ export class CarsListComponent implements OnInit {
         this.loadCars();
       }
     });
+  }
+
+  private configureSearchFilter() {
+    this.cars.filterPredicate = (car: Car, filter: string): boolean => {
+      const searchTerm = filter.toLowerCase().trim();
+      
+      // Utiliser '??' pour gérer les valeurs nulles
+      const clientName = car.client 
+        ? `${car.client.firstName?.toLowerCase()} ${car.client.lastName?.toLowerCase()}`
+        : '';
+    
+      return (
+        car.brand?.toLowerCase().includes(searchTerm) ||
+        car.model?.toLowerCase().includes(searchTerm) ||
+        car.licensePlate?.toLowerCase().includes(searchTerm) ||
+        car.chassisNumber?.toLowerCase().includes(searchTerm) ||
+        car.mileage?.toString().includes(searchTerm) ||
+        clientName.includes(searchTerm)
+      );
+    };
   }
 }

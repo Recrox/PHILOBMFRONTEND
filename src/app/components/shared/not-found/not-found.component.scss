@@ -38,9 +38,10 @@
   /* Effet au survol */
   .return-home-button:hover {
     background-color: #1976d2; /* Couleur de fond au survol */
+    cursor: pointer; /* Change le curseur au survol */
     // color: white; /* Couleur du texte au survol */
   }
-  
+
   /* Utilisation d'un style global pour les boutons */
   button[color="primary"] {
     // color: white; /* Changer la couleur du texte en blanc */
