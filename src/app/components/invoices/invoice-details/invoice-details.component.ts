@@ -44,6 +44,7 @@ import { CarSelectComponent } from '../../shared/car-select/car-select.component
 })
 export class InvoiceDetailsComponent implements OnInit {
   invoiceForm: FormGroup;
+  
   clients: Client[] = [];
   cars: Car[] = [];
   services: Service[] = [];
@@ -57,8 +58,8 @@ export class InvoiceDetailsComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.invoiceForm = this.fb.group({
-      clientId: [null, Validators.required],
-      car: [null, Validators.required],
+      clientId: [null],
+      car: [null],
       date: [new Date(), Validators.required,],
       services: [[]]
     });

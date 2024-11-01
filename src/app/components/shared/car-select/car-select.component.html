@@ -2,13 +2,13 @@
     <mat-form-field appearance="fill" class="form-field full-width">
       <mat-label>Voiture</mat-label>
   
-      <mat-select formControlName="clientId" (openedChange)="openSelect()">
+      <mat-select formControlName="carId" (openedChange)="openSelect()">
         <mat-select-trigger>
           {{ getCarFullName(carForm.get('carId')?.value) }}
         </mat-select-trigger>
   
         <mat-form-field class="full-width">
-          <mat-label>Rechercher un client...</mat-label>
+          <mat-label>Rechercher une voiture...</mat-label>
           <input
             #searchInput
             matInput
@@ -18,23 +18,23 @@
           />
         </mat-form-field>
   
-        @for (client of filteredCars; track client.id) {
-          <mat-option [value]="client.id" (onSelectionChange)="onClientSelected()">
-            {{ client.brand }} {{ client.model }}
+        @for (car of filteredCars; track car.id) {
+          <mat-option [value]="car.id" (onSelectionChange)="onCarSelected()">
+            {{ car.brand }} {{ car.model }}
           </mat-option>
         }
   
       </mat-select>
   
-      @if (carForm.get('clientId')?.value) {
+      @if (carForm.get('carId')?.value) {
         <!-- Icône de réinitialisation pour annuler la sélection -->
         <button mat-icon-button matSuffix (click)="clearCarSelection($event)">
           <mat-icon>close</mat-icon>
         </button>
       }
   
-      @if (carForm.get('clientId')?.hasError('required')) {
-        <mat-error>Le propriétaire est requis.</mat-error>
+      @if (carForm.get('carId')?.hasError('required')) {
+        <mat-error>Le véhicule est requis.</mat-error>
       }
     </mat-form-field>
   </div>

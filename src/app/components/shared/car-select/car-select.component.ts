@@ -29,7 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 })
 export class CarSelectComponent implements OnInit {
   @ViewChild('searchInput') searchInput!: ElementRef; // Référence au champ de recherche
-  @Input() carForm: FormGroup;
+  @Input() carForm!: FormGroup;
   @Output() carCleared = new EventEmitter<void>(); // Événement pour notifier la suppression du client sélectionné
 
   cars: Car[] = [];
@@ -41,16 +41,7 @@ export class CarSelectComponent implements OnInit {
     private carService: CarService,
     private notificationService: NotificationService
   ) {
-    this.carForm = this.fb.group({
-      clientId: [null, Validators.required],
-      // Ajoutez d'autres contrôles pour votre voiture ici
-      brand: [null],
-      model: [null],
-      licensePlate: [null],
-      chassisNumber: [null],
-      mileage: [null],
-      services: [[]]
-    });
+
   }
 
   ngOnInit(): void {
@@ -66,16 +57,18 @@ export class CarSelectComponent implements OnInit {
     });
   }
 
-  filterCars() {
-    const searchTerm = this.searchControl.value.toLowerCase();
-    this.filteredCars = this.filteredCars.filter(car => 
-      (car.model?.toLowerCase().includes(searchTerm) || 
-      car.brand?.toLowerCase().includes(searchTerm))
-    );
+  filterCars(): void {
+    const search = this.searchControl.value?.toLowerCase() || '';
+    this.filteredCars = search
+      ? this.cars.filter(car =>
+        car.brand?.toLowerCase().includes(search) ||
+        car.model?.toLowerCase().includes(search)
+        )
+      : this.cars;
   }
 
   getCarFullName(carId: number): string {
-    const car = this.filteredCars.find(c => c.id === carId);
+    const car = this.cars.find(c => c.id === carId);
     return car ? `${car.model} ${car.brand}` : 'Aucune voitures sélectionné';
   }
 
@@ -87,7 +80,7 @@ export class CarSelectComponent implements OnInit {
     this.carCleared.emit(); // Notifie le parent que le client est supprimé
   }
 
-  onClientSelected() {
+  onCarSelected() {
     this.searchControl.setValue('');
     this.filteredCars = this.cars;
   }
