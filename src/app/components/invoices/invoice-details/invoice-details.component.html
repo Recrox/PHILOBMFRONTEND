@@ -1,0 +1,63 @@
+<h2 mat-dialog-title class="dialog-title">{{ data?.id ? 'Modifier' : 'Ajouter' }} une Facture</h2>
+<mat-dialog-content class="dialog-content">
+  <form [formGroup]="invoiceForm">
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Client</mat-label>
+      <mat-select formControlName="client">
+        @for (client of clients; track client.id) {
+          <mat-option [value]="client">
+            {{ client.lastName }} {{ client.firstName }}
+          </mat-option>
+        }
+      </mat-select>
+      @if (invoiceForm.get('client')?.hasError('required')) {
+        <mat-error>Le client est requis.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Voiture</mat-label>
+      <mat-select formControlName="car">
+        @for (car of cars; track car.id) {
+          <mat-option [value]="car">
+            {{ car.brand }} - {{ car.model }}
+          </mat-option>
+        }
+      </mat-select>
+      @if (invoiceForm.get('car')?.hasError('required')) {
+        <mat-error>La voiture est requise.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      @if (invoiceForm.get('date')?.hasError('required')) {
+        <mat-error>La date est requise.</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Services</mat-label>
+      <mat-select formControlName="services" multiple>
+        @for (service of services; track service.id) {
+          <mat-option [value]="service">
+            {{ service.description }}
+          </mat-option>
+        }
+      </mat-select>
+      @if (invoiceForm.get('services')?.hasError('required')) {
+        <mat-error>Sélectionnez au moins un service.</mat-error>
+      }
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Annuler</button>
+  <button mat-button color="primary" (click)="saveInvoice()">Enregistrer</button>
+</mat-dialog-actions>

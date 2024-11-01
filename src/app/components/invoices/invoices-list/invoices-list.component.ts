@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NotificationService } from '../../../notification.service';
 import { Invoice } from '../../../models/Invoice';
 import { InvoiceService } from '../../../services/invoice.service';
+import { InvoiceDetailsComponent } from '../invoice-details/invoice-details.component';
 
 @Component({
   selector: 'app-invoices-list',
@@ -71,11 +72,11 @@ export class InvoicesListComponent implements OnInit {
   }
 
   addInvoice(): void {
-    // this.openInvoiceDetails();
+    this.openInvoiceDetails();
   }
 
   editInvoice(invoice: Invoice): void {
-    // this.openInvoiceDetails(invoice);
+    this.openInvoiceDetails(invoice);
   }
 
   deleteInvoice(invoice: Invoice): void {
@@ -96,15 +97,15 @@ export class InvoicesListComponent implements OnInit {
     this.invoiceService.downloadPDF(invoice.id);
   }
 
-  // openInvoiceDetails(invoice?: Invoice): void {
-  //   const dialogRef = this.dialog.open(InvoiceDetailsComponent, {
-  //     data: invoice ? { ...invoice } : null,
-  //   });
+  openInvoiceDetails(invoice?: Invoice): void {
+    const dialogRef = this.dialog.open(InvoiceDetailsComponent, {
+      data: invoice ? { ...invoice } : null,
+    });
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this.loadInvoices();
-  //     }
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadInvoices();
+      }
+    });
+  }
 }

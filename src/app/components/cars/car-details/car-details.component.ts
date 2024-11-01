@@ -8,8 +8,6 @@ import { CarService } from '../../../services/car.service';
 import { Car } from '../../../models/Car';
 import { NotificationService } from '../../../notification.service';
 import { MatOption } from '@angular/material/core';
-import { ClientService } from '../../../services/client.service';
-import { Client } from '../../../models/Client';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { OwnerSelectComponent } from '../../shared/owner-select/owner-select.component';
@@ -35,7 +33,6 @@ import { OwnerSelectComponent } from '../../shared/owner-select/owner-select.com
 export class CarDetailsComponent implements OnInit {
   carForm: FormGroup; // Déclarez un FormGroup
   car: Car = {id: 0, brand: '', model: '', licensePlate: '', chassisNumber: '', mileage: 0, services: [] };
-  clients: Client[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<CarDetailsComponent>,
