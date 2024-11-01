@@ -88,7 +88,6 @@ export class ClientComponent implements OnInit {
     if (confirmation) {
       this.clientService.delete(client.id).subscribe({
         next: () => {
-          console.log('Client supprimé avec succès:', client);
           this.loadClients();
         },
         error: (error) => {

@@ -87,7 +87,6 @@ export class CarsListComponent implements OnInit {
     if (confirmation) {
       this.carService.delete(car.id).subscribe({
         next: () => {
-          console.log('Voiture supprimée avec succès:', car);
           this.loadCars();
         },
         error: (error) => {

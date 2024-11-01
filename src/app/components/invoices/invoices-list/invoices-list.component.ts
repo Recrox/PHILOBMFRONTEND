@@ -83,7 +83,6 @@ export class InvoicesListComponent implements OnInit {
     if (confirmation) {
       this.invoiceService.delete(invoice.id).subscribe({
         next: () => {
-          console.log('Facture supprimée avec succès:', invoice);
           this.loadInvoices();
         },
         error: (error) => {

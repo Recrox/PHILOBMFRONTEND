@@ -46,11 +46,11 @@ export class CarDetailsComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.carForm = this.fb.group({
-      clientId: [null, Validators.required], // Contrôle pour le propriétaire
-      brand: ['', Validators.required],
-      model: ['', Validators.required],
-      licensePlate: ['', Validators.required],
-      chassisNumber: ['', Validators.required],
+      clientId: [null], // Contrôle pour le propriétaire
+      brand: [''],
+      model: [''],
+      licensePlate: [''],
+      chassisNumber: [''],
       mileage: [0, [Validators.required, Validators.min(0),Validators.max(2000000)]]
     });
   }
@@ -114,6 +114,12 @@ export class CarDetailsComponent implements OnInit {
     );
   }
 
+  getClientFullName(clientId: number | null): string {
+    const client = this.clients.find(c => c.id === clientId);
+    return client ? `${client.firstName} ${client.lastName}` : '';
+  }
+
+  
   openSelect(): void {
     this.searchControl.setValue(''); // Réinitialiser le champ de recherche
     this.filterClients(); // Filtrer les clients
