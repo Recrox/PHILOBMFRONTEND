@@ -3,7 +3,7 @@
     PhiloBM
   </a>
   <nav class="menu-nav">
-    <a mat-button routerLink="/" routerLinkActive="active" aria-label="Accueil">
+    <a mat-button routerLink="/" routerLinkActive="active" aria-label="Accueil" [routerLinkActiveOptions]="{ exact: true }">
       <mat-icon>home</mat-icon> Accueil
     </a>
     <a mat-button routerLink="/client" routerLinkActive="active" aria-label="Client">

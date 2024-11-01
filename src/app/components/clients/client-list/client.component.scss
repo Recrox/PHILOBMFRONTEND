@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 .client-list-title {
   display: flex;
   align-items: center;
@@ -51,4 +53,17 @@ button[color="primary"] {
 
 button[color="warn"] {
   color: #d32f2f;
+}
+
+table[color="primary"] {
+  color: #1976d2;
+}
+
+table[color="warn"] {
+  color: #d32f2f;
+}
+
+.primary-background {
+  background-color: mat.m2-get-color-from-palette(mat.$magenta-palette); 
+  // color: white; // Assurez-vous que le texte est lisible sur le fond
 }
