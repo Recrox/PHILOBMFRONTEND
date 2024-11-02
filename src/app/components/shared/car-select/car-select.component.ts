@@ -37,9 +37,7 @@ export class CarSelectComponent implements OnInit {
   filteredCars: Car[] = [];
   
   constructor(
-    private fb: FormBuilder,
     private carService: CarService,
-    private notificationService: NotificationService
   ) {
 
   }
