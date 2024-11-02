@@ -44,32 +44,26 @@ import { CarSelectComponent } from '../../shared/car-select/car-select.component
 })
 export class InvoiceDetailsComponent implements OnInit {
   invoiceForm: FormGroup;
-  
-  clients: Client[] = [];
-  cars: Car[] = [];
-  services: Service[] = [];
+  services:Service[] = []
 
   constructor(
     public dialogRef: MatDialogRef<InvoiceDetailsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Invoice | null,
-    private carService: CarService,
     private invoiceService: InvoiceService,
     private notificationService: NotificationService,
     private fb: FormBuilder
   ) {
     this.invoiceForm = this.fb.group({
       clientId: [null],
-      car: [null],
+      carId: [null],
       date: [new Date(), Validators.required,],
       services: [[]]
     });
   }
 
   ngOnInit(): void {
-    this.invoiceService.getAll().subscribe((invoice) => (this.cars = invoice));
-    
     if (this.data) {
-      this.invoiceForm.patchValue(this.data);
+      this.invoiceForm.patchValue(this.data); // Remplissez le formulaire si des données sont fournies
     }
   }
 

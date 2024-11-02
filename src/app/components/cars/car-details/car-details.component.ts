@@ -32,7 +32,6 @@ import { OwnerSelectComponent } from '../../shared/owner-select/owner-select.com
 })
 export class CarDetailsComponent implements OnInit {
   carForm: FormGroup; // Déclarez un FormGroup
-  car: Car = {id: 0, brand: '', model: '', licensePlate: '', chassisNumber: '', mileage: 0, services: [] };
 
   constructor(
     public dialogRef: MatDialogRef<CarDetailsComponent>,
