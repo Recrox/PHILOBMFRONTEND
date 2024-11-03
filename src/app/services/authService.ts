@@ -18,10 +18,9 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(loginRequest: LoginRequest): Observable<any> {
+    localStorage.removeItem('authToken');
     return this.http.post<any>(`${this.apiUrl}/Auth/login`, loginRequest).pipe(
       tap(response => {
-        console.log(response);
-        
         localStorage.setItem('authToken', response.token);
         this.isAuthenticatedSubject.next(true);
       })
