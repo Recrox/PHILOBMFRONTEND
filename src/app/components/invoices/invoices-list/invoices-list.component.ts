@@ -44,7 +44,9 @@ export class InvoicesListComponent implements OnInit {
     private invoiceService: InvoiceService,
     private dialog: MatDialog,
     private notificationService: NotificationService
-  ) {}
+  ) {
+    this.configureInvoiceSearchFilter();
+  }
 
   ngOnInit(): void {
     this.loadInvoices();
@@ -108,4 +110,27 @@ export class InvoicesListComponent implements OnInit {
       }
     });
   }
+
+  private configureInvoiceSearchFilter() {
+    this.invoices.filterPredicate = (invoice: Invoice, filter: string): boolean => {
+      const searchTerm = filter.toLowerCase().trim();
+
+      // Extraire les informations nécessaires pour le filtrage
+      const clientName = invoice.client 
+        ? `${invoice.client.firstName?.toLowerCase()} ${invoice.client.lastName?.toLowerCase()}`
+        : '';
+      
+      const carLicensePlate = invoice.car?.licensePlate?.toLowerCase() || '';
+      const carMileage = invoice.car?.mileage?.toString() || '';
+
+      // Vérifier si le filtre correspond à l'un des critères
+      return (
+        clientName.includes(searchTerm) ||
+        carLicensePlate.includes(searchTerm) ||
+        carMileage.includes(searchTerm) ||
+        invoice.date.toString().includes(searchTerm) // Vous pouvez format la date selon vos besoins
+      );
+    };
+}
+
 }

@@ -1,13 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ClientService } from '../../../services/client.service';
 import { Client } from '../../../models/Client';
 import { NotificationService } from '../../../notification.service';
@@ -60,7 +56,6 @@ export class ClientDetailsComponent implements OnInit {
       // Ajout d'un nouveau client
       this.clientService.create(this.client).subscribe({
         next: (newClient) => {
-          console.log('Client ajouté:', newClient);
           this.notificationService.showNotification('Client ajouté avec succès!'); // Notification de succès
           this.dialogRef.close(newClient);
         },
