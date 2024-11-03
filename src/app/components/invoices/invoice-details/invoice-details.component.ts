@@ -1,11 +1,8 @@
-import { Component, importProvidersFrom, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Client } from '../../../models/Client';
-import { Car } from '../../../models/Car';
 import { Service } from '../../../models/Service';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { Invoice } from '../../../models/Invoice';
-import { CarService } from '../../../services/car.service';
 import { NotificationService } from '../../../notification.service';
 import { InvoiceService } from '../../../services/invoice.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -57,7 +54,7 @@ export class InvoiceDetailsComponent implements OnInit {
       clientId: [null],
       carId: [null],
       date: [new Date(), Validators.required,],
-      services: [[]]
+      // services: [[]]
     });
   }
 
@@ -68,11 +65,10 @@ export class InvoiceDetailsComponent implements OnInit {
   }
 
   saveInvoice(): void {
-    console.log(this.invoiceForm.valid);
-    
     if (this.invoiceForm.valid) {
       const invoiceData: Invoice = this.invoiceForm.value; // Récupérez les données du formulaire
-  
+      console.log(invoiceData);
+      
       if (this.data && this.data.id) {
         // Mise à jour d'une facture existante
         this.invoiceService.update({ ...invoiceData, id: this.data.id }).subscribe({

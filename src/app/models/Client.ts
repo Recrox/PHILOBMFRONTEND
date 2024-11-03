@@ -10,3 +10,4 @@ export interface Client extends AuditableEntity {
   email?: string;
   cars: Car[];
 }
+

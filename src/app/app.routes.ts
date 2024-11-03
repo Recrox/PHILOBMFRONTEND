@@ -8,6 +8,7 @@ import { NotFoundComponent } from './components/shared/not-found/not-found.compo
 import { PrivacyPolicyComponent } from './components/footer/privacy-policy/privacy-policy.component';
 import { TermsOfServiceComponent } from './components/footer/terms-of-service/terms-of-service.component';
 import { ContactComponent } from './components/footer/contact/contact.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,6 +18,7 @@ export const routes: Routes = [
   { path: 'privacy', component: PrivacyPolicyComponent },
   { path: 'terms', component: TermsOfServiceComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', component: NotFoundComponent },  // Route 404
 ];
 

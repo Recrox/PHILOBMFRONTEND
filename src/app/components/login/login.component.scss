@@ -1,0 +1,55 @@
+/* login.component.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5; /* Couleur d'arrière-plan douce */
+    padding: 1rem; /* Ajout d'un peu de marge */
+  }
+  
+  mat-card {
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    background-color: #ffffff; /* Fond blanc pour le card */
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem; /* Espacement entre le titre et le formulaire */
+    font-size: 1.5rem; /* Taille de police du titre */
+    color: #333; /* Couleur du texte */
+  }
+  
+  mat-form-field {
+    width: 100%; /* S'assurer que le champ remplit tout l'espace */
+    margin-bottom: 1rem; /* Espacement entre les champs */
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 0.5rem;
+    text-align: center; /* Centrer le message d'erreur */
+  }
+  
+  button {
+    width: 100%; /* Le bouton remplit tout l'espace disponible */
+    font-size: 1rem; /* Taille de police pour le bouton */
+    padding: 0.75rem; /* Padding du bouton */
+    border-radius: 4px; /* Coins arrondis pour le bouton */
+    transition: background-color 0.3s, transform 0.3s; /* Animation douce */
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Changer la couleur sur le survol */
+    transform: translateY(-2px); /* Légère élévation au survol */
+  }
+  
+  button:disabled {
+    background-color: #e0e0e0; /* Couleur pour le bouton désactivé */
+    cursor: not-allowed; /* Changer le curseur pour indiquer qu'il est désactivé */
+  }
+  

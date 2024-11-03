@@ -74,3 +74,28 @@
   }
   
   
+  .auth-buttons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .auth-buttons button {
+    color: white; /* Couleur du texte */
+    background-color: #3f51b5; /* Couleur de fond */
+    border: none; /* Enlever les bordures */
+    border-radius: 4px; /* Coins arrondis */
+    padding: 8px 16px; /* Espacement intérieur */
+    font-size: 1rem; /* Taille de la police */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animation pour le hover et le click */
+  }
+  
+  .auth-buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond au survol */
+    transform: scale(1.05); /* Légère augmentation de la taille au survol */
+  }
+  
+  .auth-buttons button:focus {
+    outline: none; /* Retirer le contour par défaut */
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5); /* Ombre autour du bouton au focus */
+  }
+  

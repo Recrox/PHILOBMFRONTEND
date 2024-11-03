@@ -16,6 +16,18 @@
       <mat-icon>receipt</mat-icon> Facturations
     </a>
   </nav>
+
+  <!-- Bouton de connexion/déconnexion -->
+  <div class="auth-buttons">
+    <button mat-button *ngIf="!(authService.isAuthenticated$ | async); else loggedOut" (click)="login()">
+      <mat-icon>login</mat-icon> Connexion
+    </button>
+    <ng-template #loggedOut>
+      <button mat-button (click)="logout()">
+        <mat-icon>logout</mat-icon> Déconnexion
+      </button>
+    </ng-template>
+  </div>
 </mat-toolbar>
 
 <div class="main-container">
